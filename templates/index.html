@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Football Soundboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        .soundboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .sound-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>College Football Soundboard</h1>
+    <div class="soundboard">
+        {% for sound in sound_files %}
+        <button class="sound-button" onclick="playSound('{{ sound }}')">{{ sound.split('.')[0] }}</button>
+        {% endfor %}
+    </div>
+
+    <audio id="audio-player"></audio>
+
+    <script>
+        function playSound(filename) {
+            var audio = document.getElementById('audio-player');
+            audio.src = '/play/' + filename;
+            audio.play();
+        }
+    </script>
+</body>
+</html>
